@@ -780,6 +780,7 @@ def multi():
         eazy = False
         eazy1 = False
         eazy2 = False
+        client.turn_tank(client.token,LEFT)
         while mainloop:
             screen.blit(background,(0,0))
             for event in pygame.event.get():
@@ -1112,6 +1113,7 @@ def multi_al():
         eazy = False
         eazy1 = False
         eazy2 = False
+        client.turn_tank(client.token,RIGHT)
         while mainloop:
             screen.blit(background,(0,0))
             for event in pygame.event.get():
@@ -1259,13 +1261,17 @@ def multi_al():
                     client.fire_bullet(client.token)
                     client.turn_tank(client.token, LEFT)
                 elif tank_x >= bullet1_x - 20 and tank_x <= bullet1_x + 20 and tank_y > bullet1_y:
-                    client.turn_tank(client.token, RIGHT)
-                elif tank_x >= bullet1_x - 20 and tank_x <= bullet1_x + 20 and tank_y > bullet1_y:
-                    client.turn_tank(client.token, RIGHT)
+                    client.turn_tank(client.token, DOWN)
+                elif tank_x >= bullet1_x - 20 and tank_x <= bullet1_x + 20 and tank_y < bullet1_y:
+                    client.turn_tank(client.token, UP)
+                elif tank_x >= bullet1_x - 20 and tank_x <= bullet1_x + 20 and tank_y == bullet1_y:
+                    client.turn_tank(client.token, DOWN)
                 elif tank_y >= bullet1_y - 20 and tank_y <= bullet1_y + 20 and tank_x > bullet1_x:
-                    client.turn_tank(client.token, UP)
+                    client.turn_tank(client.token, RIGHT)
                 elif tank_y >= bullet1_y - 20 and tank_y <= bullet1_y + 20 and tank_x < bullet1_x:
-                    client.turn_tank(client.token, UP)
+                    client.turn_tank(client.token, LEFT)
+                elif tank_y >= bullet1_y - 20 and tank_y <= bullet1_y + 20 and tank_x == bullet1_x:
+                    client.turn_tank(client.token, LEFT)
             except:
                 pass
             pygame.display.flip()
